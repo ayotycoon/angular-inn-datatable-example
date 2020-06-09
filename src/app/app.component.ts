@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
         this.dataSource = data.map((_, i) => {
           return {
             ..._,
-            checkbox: i % 2 ? false : true,
+         
             createdDate: Number(new Date()),
             nested: { gender: "male" }
           };
