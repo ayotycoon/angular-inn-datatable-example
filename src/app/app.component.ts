@@ -2,6 +2,7 @@ import { Component, VERSION, OnInit } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { DataTableTypes } from "inn-datatable";
 import { HttpClient } from "@angular/common/http";
+import { UpperCasePipe } from '@angular/common';
 @Component({
   selector: "my-app",
   templateUrl: "./app.component.html",
@@ -13,7 +14,7 @@ export class AppComponent implements OnInit {
     heads: <DataTableTypes.Head[]>[
       { title: "checkbox", key: "checkbox" },
       { title: "Name", key: "name" },
-      { title: "Email", key: "email" },
+      { title: "Email", key: "email" , transform: (fieldData, rowData) => this.upperCasePipe.transform(fieldData)},
       { title: "Body", key: "body" },
       { title: "Gender", key: "nested.gender" },
       {
@@ -43,7 +44,7 @@ export class AppComponent implements OnInit {
 
   dataSource: any[];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private upperCasePipe: UpperCasePipe) {}
 
   ngOnInit() {
     this.getData()
